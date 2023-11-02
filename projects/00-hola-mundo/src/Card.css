@@ -1,0 +1,31 @@
+.card {
+    background-color: rgb(59, 169, 212);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-button {
+    background-color: rgb(30, 140, 196);
+    border-radius: 5px;
+    border-width: 0;
+    margin-bottom: 5px;
+    width: 80px;
+    height: 35px;
+    transition: 0.3s background-color;
+    color: white;
+}
+
+.card-button:hover {
+    background-color: aqua;
+}
+
+.card-input {
+    margin:5px;
+    background-color: #201f1d;
+    color: white;
+    border-radius: 5px;
+    border-width: 0;
+    padding: 5px;
+}
