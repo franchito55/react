@@ -1,0 +1,114 @@
+html {
+  font-family: monospace;
+  font-size: 16px;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  margin: 10px;
+  width: 95vw;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  scrollbar-color: #444;
+  scrollbar-gutter: stable;
+  scrollbar-width: 10px;;
+}
+
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.table-header {
+  border: 1px solid white;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  flex-direction: row;
+  height: 8vh;
+  width: calc(100% - 2px);
+  background-color: #222;
+}
+
+.table-header-column {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-users {
+  height: 80vh;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+
+.table-footer {
+  border: 1px solid white;
+  border-radius: 0 0 10px 10px;
+  height: 8vh;
+}
+
+.column-name {
+  width: 15%;
+}
+
+.column-lastName {
+  width: 15%;
+}
+
+.column-email {
+  width: 30%;
+}
+
+.column-phoneNumber {
+  width: 20%;
+}
+
+.column-country {
+  width: 20%;
+}
+
+.table-header-column-span {
+  align-items: center;
+}
+
+.user-info-row {
+  height: 40px;
+  display: flex;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.user-info-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-behavior: auto;
+}
+
+span {
+  text-wrap: nowrap;
+}
+
+.hasRightBorder {
+  border-right: 1px solid white;
+}
+
+.hasBottomBorder {
+  border-bottom: 1px solid white;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
