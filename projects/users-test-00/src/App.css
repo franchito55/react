@@ -12,30 +12,28 @@ body {
   display: block;
   align-items: center;
   justify-content: center;
-  background-color: #222;
-  scrollbar-color: #444;
-  scrollbar-gutter: stable;
-  scrollbar-width: 10px;;
+  background: linear-gradient(121deg, rgba(0,0,0,1) 0%, rgba(43,27,85,1) 100%);
 }
 
 .main-content {
   width: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: 16px;
 }
 
 .table-header {
-  border: 1px solid white;
-  border-radius: 10px 10px 0 0;
   display: flex;
   flex-direction: row;
   height: 8vh;
-  width: calc(100% - 2px);
-  background-color: #222;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 32px 32px 0 0;
 }
 
 .table-header-column {
   display: flex;
+  flex-direction: column;
   color: white;
   justify-content: center;
   align-items: center;
@@ -43,14 +41,16 @@ body {
 
 .table-users {
   height: 80vh;
-  overflow: auto;
-  scrollbar-gutter: stable;
+  width: calc(100% + 12px);
+  overflow-y: scroll;
 }
 
 .table-footer {
-  border: 1px solid white;
-  border-radius: 0 0 10px 10px;
   height: 8vh;
+  width: 100%;
+  border: 1px solid white;
+  border-top: 0;
+  border-radius: 0 0 32px 32px;
 }
 
 .column-name {
@@ -80,35 +80,59 @@ body {
 .user-info-row {
   height: 40px;
   display: flex;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .user-info-column {
   display: flex;
   align-items: center;
   justify-content: center;
-  scroll-behavior: auto;
+  overflow: hidden;
 }
 
 span {
   text-wrap: nowrap;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  position: relative;
+  right: -5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #00BBBB;
+  border-radius: 8px;
+}
+
 .hasRightBorder {
   border-right: 1px solid white;
 }
 
-.hasBottomBorder {
-  border-bottom: 1px solid white;
+.hasLeftBorder {
+  border-left: 1px solid white;
 }
 
-::-webkit-scrollbar {
-  width: 0;
+.hasTopBorder {
+  border-top: 1px solid white;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: black;
-  border: 1px solid grey;
-  border-radius: 3px;
+.filterRow {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.filterInput {
+  height: calc(100% - 8px);
+  width: 60%;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background-color: #222222;
+  font-family: monospace;
+  font-size: 16px;
+  color: white;
 }

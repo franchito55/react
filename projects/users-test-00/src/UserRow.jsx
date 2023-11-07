@@ -7,7 +7,7 @@ export function UserRow({ idx, name, lastName, email, phoneNumber, country }) {
 
     return(
         <div className={rowClass}>
-            <div className="user-info-column hasRightBorder column-name">
+            <div className="user-info-column hasLeftBorder hasRightBorder column-name">
                 <span>{name}</span>
             </div>
             <div className="user-info-column hasRightBorder column-lastName">
@@ -19,7 +19,7 @@ export function UserRow({ idx, name, lastName, email, phoneNumber, country }) {
             <div className="user-info-column hasRightBorder column-phoneNumber">
                 <span>{phoneNumber}</span>
             </div>
-            <div className="user-info-column column-country">
+            <div className="user-info-column hasRightBorder column-country">
                 <span>{country}</span>
             </div>
         </div>

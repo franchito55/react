@@ -7,33 +7,55 @@ import { useEffect } from 'react'
 const RANDOM_USER_API = 'https://randomuser.me/api/?results=100'
 
 export function App() {
+  const [initialUsers, setInitialUsers] = useState([])
   const [users, setUsers] = useState([])
+  const [nameFilter, setNameFilter] = useState("")
+  const [lastNameFilter, setLastNameFilter] = useState("")
+  const [emailFilter, setEmailFilter] = useState("")
+  const [phoneNumberFilter, setPhoneNumberFilter] = useState("")
+  const [countryFilter, setCountryFilter] = useState("")
 
   useEffect(() => {
     fetch(RANDOM_USER_API)
     .then(res => res.json())
     .then(response => {
+      setInitialUsers(response.results)
       setUsers(response.results)
     })
   }, [])
+
+  useEffect(() => {
+    setUsers(initialUsers.filter((user) => (
+                  user.name.first.includes(nameFilter)
+                )).filter((user) => (
+                  user.name.last.includes(lastNameFilter)
+                )).filter((user) => (
+                  user.email.includes(emailFilter)
+                )).filter((user) => (
+                  user.cell.includes(phoneNumberFilter)
+                )).filter((user) => (
+                  user.location.country.includes(countryFilter)
+                ))
+            )
+  }, [nameFilter, lastNameFilter, emailFilter, phoneNumberFilter, countryFilter])
 
   return (
     <>
       <div className='main-content'>
         <div className='table-header'>
-          <UserHeaderColumn hasRightBorder={true} column='column-name'>
+          <UserHeaderColumn hasRightBorder={true} column='column-name' filterUsers={setNameFilter}>
             Name
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-lastName'>
+          <UserHeaderColumn hasRightBorder={true} column='column-lastName' filterUsers={setLastNameFilter}>
             Last name
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-email'>
+          <UserHeaderColumn hasRightBorder={true} column='column-email' filterUsers={setEmailFilter}>
             Email
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-phoneNumber'>
+          <UserHeaderColumn hasRightBorder={true} column='column-phoneNumber' filterUsers={setPhoneNumberFilter}>
             Phone number
           </UserHeaderColumn>
-          <UserHeaderColumn column='column-country'>
+          <UserHeaderColumn column='column-country' filterUsers={setCountryFilter}>
             Country
           </UserHeaderColumn>
         </div>
@@ -52,17 +74,7 @@ export function App() {
             ))
           }
         </div>
-        <div className='table-footer'>
-          <UserHeaderColumn hasRightBorder={true} column='column-name'>
-          </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-lastName'>
-          </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-email'>
-          </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-phoneNumber'>
-          </UserHeaderColumn>
-          <UserHeaderColumn column='column-country'>
-          </UserHeaderColumn>
+        <div className='table-footer hasTopBorder'>
         </div>
       </div>
     </>
