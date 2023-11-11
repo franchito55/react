@@ -1,9 +1,13 @@
-export function UserRow({ idx, name, lastName, email, phoneNumber, country }) {
+export function UserRow({ idx, name, lastName, email, phoneNumber, country, deleteUser }) {
 
     let rowClass = "user-info-row"
     if (idx !== 99) {
         rowClass += " hasBottomBorder"
     }
+
+    const handleDeleteUser = (() => {
+        deleteUser(idx)
+    })
 
     return(
         <div className={rowClass}>
@@ -21,6 +25,9 @@ export function UserRow({ idx, name, lastName, email, phoneNumber, country }) {
             </div>
             <div className="user-info-column hasRightBorder column-country">
                 <span>{country}</span>
+            </div>
+            <div className="user-info-column hasRightBorder column-delete">
+                <button className="delete-user-button" onClick={handleDeleteUser}>Delete</button>
             </div>
         </div>
     )

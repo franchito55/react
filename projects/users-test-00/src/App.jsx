@@ -3,6 +3,7 @@ import './App.css'
 import { UserHeaderColumn } from './UserHeaderColumn'
 import { UserRow } from './UserRow'
 import { useEffect } from 'react'
+import { EmptyHeaderColumn } from './EmptyHeaderColumn'
 
 const RANDOM_USER_API = 'https://randomuser.me/api/?results=100'
 
@@ -26,50 +27,61 @@ export function App() {
 
   useEffect(() => {
     setUsers(initialUsers.filter((user) => (
-                  user.name.first.includes(nameFilter)
+                  user.name.first.toLowerCase().includes(nameFilter.toLowerCase())
                 )).filter((user) => (
-                  user.name.last.includes(lastNameFilter)
+                  user.name.last.toLowerCase().includes(lastNameFilter.toLowerCase())
                 )).filter((user) => (
-                  user.email.includes(emailFilter)
+                  user.email.toLowerCase().includes(emailFilter.toLowerCase())
                 )).filter((user) => (
-                  user.cell.includes(phoneNumberFilter)
+                  user.cell.toLowerCase().includes(phoneNumberFilter.toLowerCase())
                 )).filter((user) => (
-                  user.location.country.includes(countryFilter)
+                  user.location.country.toLowerCase().includes(countryFilter.toLowerCase())
                 ))
             )
   }, [nameFilter, lastNameFilter, emailFilter, phoneNumberFilter, countryFilter])
+
+  const deleteUser = ((idx) => {
+    console.log("[App] Deleting user with nº " + idx)
+    console.log(users)
+    const newUsers = [...users]
+    newUsers.splice(idx, 1)
+    setUsers(newUsers)
+    console.log(newUsers)
+  })
 
   return (
     <>
       <div className='main-content'>
         <div className='table-header'>
-          <UserHeaderColumn hasRightBorder={true} column='column-name' filterUsers={setNameFilter}>
+          <UserHeaderColumn hasRightBorder={true} column='column-name' setFilter={setNameFilter}>
             Name
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-lastName' filterUsers={setLastNameFilter}>
+          <UserHeaderColumn hasRightBorder={true} column='column-lastName' setFilter={setLastNameFilter}>
             Last name
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-email' filterUsers={setEmailFilter}>
+          <UserHeaderColumn hasRightBorder={true} column='column-email' setFilter={setEmailFilter}>
             Email
           </UserHeaderColumn>
-          <UserHeaderColumn hasRightBorder={true} column='column-phoneNumber' filterUsers={setPhoneNumberFilter}>
+          <UserHeaderColumn hasRightBorder={true} column='column-phoneNumber' setFilter={setPhoneNumberFilter}>
             Phone number
           </UserHeaderColumn>
-          <UserHeaderColumn column='column-country' filterUsers={setCountryFilter}>
+          <UserHeaderColumn hasRightBorder={true} column='column-country' setFilter={setCountryFilter}>
             Country
           </UserHeaderColumn>
+          <EmptyHeaderColumn></EmptyHeaderColumn>
         </div>
         <div className='table-users'>
           {
             users.map((user, index) => (
-              <UserRow 
+              <UserRow
                 key={index}
                 idx={index}
                 name={user.name.first}
                 lastName={user.name.last}
                 email={user.email}
                 phoneNumber={user.cell}
-                country={user.location.country}>
+                country={user.location.country}
+                deleteUser={deleteUser}>
               </UserRow>
             ))
           }

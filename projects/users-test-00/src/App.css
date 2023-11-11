@@ -129,10 +129,35 @@ span {
   height: calc(100% - 8px);
   width: 60%;
   padding: 4px;
-  border: 0;
+  border: 1px solid black;
   border-radius: 6px;
   background-color: #222222;
   font-family: monospace;
   font-size: 16px;
   color: white;
+}
+
+.filterInput:hover {
+  background-color: #333333;
+}
+
+.column-delete {
+  width: 100px;
+}
+
+.delete-user-button {
+  background-color: #222222;
+  font-family: monospace;
+  font-size: 16px;
+  color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+.delete-user-button:hover {
+  background-color: #333333;
+}
+
+.delete-user-button:active {
+  background-color: #444444;
 }
