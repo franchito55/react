@@ -1,0 +1,29 @@
+.trait {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    width: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.traitHex-hexagonalBorder {
+    background-color: #012178;
+    height: 48px;
+    width: 48px;
+    clip-path: polygon(0% 25%, 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.traitHex {
+    background-color: #01144a;
+    clip-path: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    width: 44px;
+}

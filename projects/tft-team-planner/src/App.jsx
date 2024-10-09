@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { ChampListCostSection } from './ChampListCostSection.jsx'
 import { Planner } from './Planner.jsx'
@@ -6,6 +6,7 @@ import { Planner } from './Planner.jsx'
 export function App() {
 
 	const [champs, setChamps] = useState([]);
+	const [traits, setTraits] = useState({});
 
 	function addChampToBoard(champ){
 		const newChamps = [...champs, champ];
@@ -16,7 +17,39 @@ export function App() {
 		const newChamps = champs.slice(); // Create a shallow copy of the array
 		newChamps.splice(champIndex, 1);  // Remove one element at the given index
 		setChamps(newChamps);
-		console.log(champs);
+	}
+
+	useEffect(() => {
+        calculateTraits(champs); // This will always use latest value of count
+    }, [champs]);
+
+	useEffect(() => {
+		// This will run when 'traits' changes
+		// TODO: update trait list with this
+	}, [traits]);
+
+	function calculateTraits(champs) {
+		const countedChamps = [];
+		const tempTraits = {};
+		for (var i = 0; i < champs.length; i++) {
+			var champAlreadyCounted = false;
+			for (var j = 0; j < countedChamps.length; j++) {
+				if (champs[i].name == countedChamps[j]) {
+					champAlreadyCounted = true;
+				}
+			}
+			if (!champAlreadyCounted) {
+				countedChamps.push(champs[i].name);
+				for (var j = 0; j < champs[i]['traits'].length; j++){
+					if (champs[i]['traits'][j] in tempTraits) {
+						tempTraits[champs[i]['traits'][j]] += 1;
+					} else {
+						tempTraits[champs[i]['traits'][j]] = 1;
+					}
+				}
+			}
+		}
+		setTraits(tempTraits);
 	}
 
 	const oneCosts = [
@@ -450,7 +483,7 @@ export function App() {
 				"pyro",
 				"blaster"
 			]
-		},
+		}
 	]
 
 	const fiveCosts = [
@@ -520,13 +553,13 @@ export function App() {
 				"arcana",
 				"ascendant"
 			]
-		},
+		}
 	]
 
 	return (
 		<div className="teamplanner">
 			<div className="teamplanner-header">
-				<strong className="teamplanner-title">TFT Set 11 Team Planner</strong>
+				<strong className="teamplanner-title">TFT Set 12 Team Planner</strong>
 			</div>
 			<div className="teamplanner-content">
 				<div className="teamplanner-champList">
@@ -537,7 +570,7 @@ export function App() {
 					<ChampListCostSection cost="5" champs={fiveCosts} addChamp={addChampToBoard}/>
 					<div className="teamplanner-champList-scrollPadding"></div>
 				</div>
-				<Planner board={champs} removeChamp={removeChampFromBoard}/>
+				<Planner board={champs} traits={traits} removeChamp={removeChampFromBoard}/>
 			</div>
 		</div>
 	)

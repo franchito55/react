@@ -2,6 +2,7 @@
 	flex: 1;
 	display: flex;
 	flex-direction: column;
+	border-left: 1px solid white;
 }
 
 .teamplanner-plannerSection-board {
@@ -12,9 +13,15 @@
 	align-content: flex-start;
 	padding: 20px;
 	gap: 8px;
-	height: 80%;
+	flex: 3;
 }
 
 .teamplanner-plannerSection-traits {
-	height: 10%;
+	flex: 1;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+	border-top: 1px solid white;
 }
