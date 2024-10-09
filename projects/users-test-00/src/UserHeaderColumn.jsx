@@ -3,7 +3,7 @@ export function UserHeaderColumn({ children, hasRightBorder = false, column, set
     tableHeaderColumnClass += ' ' + column
 
     const handleChange = () => {
-        setFilter(document.getElementById("filterInput" + column).value)
+        setFilter(document.getElementById("filterInput-" + column).value)
     }
 
     return(
@@ -11,7 +11,7 @@ export function UserHeaderColumn({ children, hasRightBorder = false, column, set
             <span className="table-header-column-span">{children}</span>
             { children && 
                 <div className="filterRow">
-                    <input id={"filterInput" + column} className="filterInput" placeholder={children + '...'} onChange={handleChange}></input>
+                    <input id={"filterInput-" + column} className="filterInput" placeholder={children + '...'} onChange={handleChange}></input>
                 </div>
             }
         </div>

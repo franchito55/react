@@ -1,0 +1,11 @@
+body{
+	display: flex;
+	overflow: hidden;
+	background-color: #222;
+	width: 100vw;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-family: system-ui;
+}

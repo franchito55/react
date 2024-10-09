@@ -1,0 +1,25 @@
+.teamplanner-board-championSlot {
+	height: 63px;
+	width: 63px;
+	background-color: darkblue;
+}
+
+.teamplanner-board-championSlot.cost-1 {
+	border: 1px solid #5a6069;
+}
+
+.teamplanner-board-championSlot.cost-2 {
+	border: 1px solid #16823f;
+}
+
+.teamplanner-board-championSlot.cost-3 {
+	border: 1px solid #0e82c9;
+}
+
+.teamplanner-board-championSlot.cost-4 {
+	border: 1px solid #9607a3;
+}
+
+.teamplanner-board-championSlot.cost-5 {
+	border: 1px solid #f7fa50;
+}

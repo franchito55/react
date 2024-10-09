@@ -1,0 +1,40 @@
+.champList-costSection {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.champList-costSection-header{
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+}
+
+.champList-costSection-champs {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+.cost-1 .championIcon {
+	border: 1px solid #5a6069;
+}
+
+.cost-2 .championIcon {
+	border: 1px solid #16823f;
+}
+
+.cost-3 .championIcon {
+	border: 1px solid #0e82c9;
+}
+
+.cost-4 .championIcon {
+	border: 1px solid #9607a3;
+}
+
+.cost-5 .championIcon {
+	border: 1px solid #f7fa50;
+}

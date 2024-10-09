@@ -1,0 +1,8 @@
+.championIcon {
+	width: 63px;
+	height: 63px;
+}
+
+.championIcon:hover{
+	cursor: pointer;
+}

@@ -1,0 +1,54 @@
+.teamplanner {
+	width: 1200px;
+	height: 600px;
+	background-color: #0b0712;
+	display: flex;
+	border-radius: 24px;
+	border: 1px solid white;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.teamplanner-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	width: 100%;
+	border-bottom: 1px solid white;
+}
+
+.teamplanner-content {
+	width: 100%;
+	height: 90%;
+	display: flex;
+	flex-direction: row;
+}
+
+.teamplanner-champList {
+	width: 33%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding-left: 16px;
+	padding-right: 16px;
+	overflow-y: auto;
+}
+
+.teamplanner-champList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.teamplanner-champList::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.teamplanner-champList::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.teamplanner-champList-scrollPadding {
+	width: 100%;
+	min-height: 16px;
+}
