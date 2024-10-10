@@ -18,7 +18,7 @@
 	border-bottom: 1px solid white;
 }
 
-.teamplanner-content {
+.teamplanner-body {
 	width: 100%;
 	height: 90%;
 	display: flex;
@@ -26,13 +26,14 @@
 }
 
 .teamplanner-champList {
-	width: 33.5%;
+	width: 34%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	padding-left: 16px;
 	padding-right: 16px;
 	overflow-y: auto;
+	min-width: 34%;
 }
 
 .teamplanner-champList::-webkit-scrollbar {

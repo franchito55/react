@@ -27,3 +27,28 @@
     height: 44px;
     width: 44px;
 }
+
+.traitHex.bronze {
+    background-color: #8b6148;
+}
+
+.traitHex.silver {
+    background-color: #8a9697;
+}
+
+.traitHex.gold {
+    background-color: gold;
+}
+
+.traitHex.prismatic {
+    background-color: aqua;
+}
+
+.traitHex.unique {
+    background-color: orange;
+}
+
+.emblemIcon {
+    height: 60%;
+    width: 60%;
+}

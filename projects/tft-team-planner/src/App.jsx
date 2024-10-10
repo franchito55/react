@@ -4,7 +4,6 @@ import { ChampListCostSection } from './ChampListCostSection.jsx'
 import { Planner } from './Planner.jsx'
 
 export function App() {
-
 	const [champs, setChamps] = useState([]);
 	const [traits, setTraits] = useState({});
 
@@ -561,7 +560,7 @@ export function App() {
 			<div className="teamplanner-header">
 				<strong className="teamplanner-title">TFT Set 12 Team Planner</strong>
 			</div>
-			<div className="teamplanner-content">
+			<div className="teamplanner-body">
 				<div className="teamplanner-champList">
 					<ChampListCostSection cost="1" champs={oneCosts} addChamp={addChampToBoard}/>
 					<ChampListCostSection cost="2" champs={twoCosts} addChamp={addChampToBoard}/>
