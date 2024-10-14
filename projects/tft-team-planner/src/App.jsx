@@ -29,9 +29,7 @@ export function App() {
 		// because JSON.stringify parses undefined into null
 		for (var i = 0; i < prevChamp['items'].length; i++) {
 			const currentItem = prevChamp['items'][i];
-			console.log(currentItem);
 			if (!(currentItem === null) && currentItem['type'] === 'emblem') {
-				console.log(`item ${i} is an emblem of type ${currentItem['trait']}`);
 				prevChamp['traits'].pop();
 			}
 		}
@@ -42,7 +40,6 @@ export function App() {
 		// P.S: the items here WILL NOT be null instead of undefined
 		for (var i = 0; i < prevChamp['items'].length; i++) {
 			const currentItem = prevChamp['items'][i];
-			console.log(currentItem);
 			if (currentItem !== undefined && currentItem['type'] === 'emblem') {
 				prevChamp['traits'] = [...prevChamp['traits'], prevChamp['items'][i]['trait']];
 			}
@@ -50,8 +47,6 @@ export function App() {
 
 		const newChamps = [...champs];
 		newChamps[index] = prevChamp;
-		console.log("Board updated:");
-		console.log(newChamps);
 		setChamps(newChamps);
 	}
 

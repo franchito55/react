@@ -10,23 +10,6 @@ export function BoardChampItemSlot( { index, champ, setBoardChampItem } ) {
         setIsItemSelectionMenuVisible(!isItemSelectionMenuVisible);
     }
 
-    /*function setItemSlotItem(newItem) {
-        if (newItem['type'] === 'emblem'){
-            //TODO do something
-            if (item !== undefined) {
-                addTraitToChamp(item['trait'], newItem['trait'], champ, index);
-            } else {
-                console.log(newItem);
-                addTraitToChamp(undefined, newItem['trait'], champ, index);
-            }
-        } else if (newItem['type'] === undefined) {
-            //TODO do something else
-            addTraitToChamp(item['trait'], undefined, champ, index);
-            setItem(undefined);
-        }
-        setItem(newItem);
-    }*/
-
     function setNewItem(newItem) {  
         setBoardChampItem(newItem, index);
     }

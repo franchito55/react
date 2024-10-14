@@ -18,8 +18,6 @@ export function BoardChamp( { champ, champIndex, removeChamp, updateChamp } ) {
 
 	function setBoardChampItem(item, itemIndex) {
 		const newChamp = JSON.parse(JSON.stringify(champ));
-		console.log("PREVIOUS CHAMP");
-		console.log(champ);
 		const newItems = [...champ['items']];
 		if (item['type'] === undefined) {
 			newItems[itemIndex] = undefined;
@@ -27,9 +25,6 @@ export function BoardChamp( { champ, champIndex, removeChamp, updateChamp } ) {
 			newItems[itemIndex] = item;
 		}
 		newChamp['items'] = newItems;
-		console.log("NEW CHAMP");
-		console.log(newChamp);
-		console.log(champIndex);
 		updateChamp(champIndex, newChamp);
 	}
 
