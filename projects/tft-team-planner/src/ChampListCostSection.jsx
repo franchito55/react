@@ -1,7 +1,7 @@
 import './ChampListCostSection.css'
 import { ChampListChamp } from './ChampListChamp.jsx'
 
-export function ChampListCostSection( { cost, champs, addChamp }){
+export function ChampListCostSection( { title, cost, champs, addChamp }){
 
 	const champList = champs.map((champ) => 
 		<ChampListChamp key={champ['name']} champ={champ} addChamp={addChamp}/>
@@ -12,7 +12,7 @@ export function ChampListCostSection( { cost, champs, addChamp }){
 	return(
 		<div className="champList-costSection">
 			<div className="champList-costSection-header">
-				<strong>{parseInt(cost)}-cost</strong>
+				<strong>{title}</strong>
 			</div>
 			<div className={className}>
 				{champList}

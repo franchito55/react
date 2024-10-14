@@ -1,8 +1,9 @@
 import './Planner.css'
 import { BoardChamp } from './BoardChamp.jsx'
 import { Trait } from './Trait.jsx'
+import { useEffect, useState } from 'react'
 
-export function Planner( { board, traits, removeChamp } ){
+export function Planner( { board, removeChamp, updateChamp } ){
 	const traitThresholds = {
 		'arcana': {
 			'bronze': 2,
@@ -141,13 +142,91 @@ export function Planner( { board, traits, removeChamp } ){
 		}
 	}
 
+	const [globalLevels, setGlobalLevels] = useState([]);
+
+	useEffect(() => {
+		const traits = calculateTraits(board);
+		var tempLevels = [];
+		for (var i = 0; i < Object.keys(traits).length; i++) {
+			const traitName = Object.keys(traits)[i];
+			const traitAmount = Object.values(traits)[i];
+			tempLevels = [...tempLevels, calculateNextThreshold([traitName, traitAmount])];
+		}
+		setGlobalLevels(tempLevels.sort(compareTraitValueForUI));
+	}, [board]);
+
+	function setChampItems() {
+
+	}
+
+	function calculateTraits(champs) {
+		const countedChamps = [];
+		const traits = {};
+		for (var i = 0; i < champs.length; i++) {
+			var champAlreadyCounted = false;
+			for (var j = 0; j < countedChamps.length; j++) {
+				if (champs[i]['name'] == countedChamps[j] && champs[i]['cost'] !== 0) {
+					champAlreadyCounted = true;
+				}
+			}
+			if (!champAlreadyCounted) {
+				countedChamps.push(champs[i].name);
+				for (var j = 0; j < champs[i]['traits'].length; j++){
+					if (champs[i]['traits'][j] in traits) {
+						traits[champs[i]['traits'][j]] += 1;
+					} else {
+						traits[champs[i]['traits'][j]] = 1;
+					}
+				}
+			}
+		}
+		return traits;
+	}
+
+	function calculateNextThreshold(trait){
+		if (trait !== undefined) {
+			const traitName = trait[0];
+			const traitAmount = trait[1];
+			const levels = Object.keys(traitThresholds[traitName]);
+			const values = Object.values(traitThresholds[traitName]);
+			var currentLevel;
+			var nextThreshold = 0;
+			if (levels.length == 1) {
+				currentLevel = levels[0];
+				nextThreshold = 1;
+			} else {
+				for (var i = 0; i < levels.length; i++) {
+					if (traitAmount < values[i]) {
+						currentLevel = levels[i-1];
+						nextThreshold = values[i];
+						break;
+					} else if (i == levels.length - 1) {
+						currentLevel = levels[i];
+						nextThreshold = values[i];
+						break;
+					}
+				}
+			}
+
+			const level = {};
+			level['name'] = traitName;
+			level['currentLevel'] = currentLevel;
+			level['nextThreshold'] = nextThreshold;
+			level['amount'] = traitAmount;
+			
+			return level;
+		}
+    }
+
 	function compareTraitValueForUI(traitA, traitB) {
 		if (traitA !== undefined && traitB !== undefined) {
-			const traitALevel = calculateNextThreshold(traitA);
-			const traitBLevel = calculateNextThreshold(traitB);
+			const traitAAmount = traitA['amount'];
+			const traitBAmount = traitB['amount'];
+			const traitALevel = traitA['currentLevel'];
+			const traitBLevel = traitB['currentLevel'];
 
 			const values = {
-				'EMPTY': 0,
+				undefined: 0,
 				'unique': 1,
 				'bronze': 2,
 				'silver': 3,
@@ -155,17 +234,8 @@ export function Planner( { board, traits, removeChamp } ){
 				'prismatic': 5
 			}
 
-			const valueA = values[traitALevel[0]];
-			const valueB = values[traitBLevel[0]];
-
-			/*console.log("traitA");
-			console.log(traitA);
-			console.log(traitALevel[0]);
-			console.log(valueA);
-			console.log("traitB");
-			console.log(traitB);
-			console.log(traitBLevel[0]);
-			console.log(valueB);*/
+			const valueA = values[traitALevel];
+			const valueB = values[traitBLevel];
 
 			// Inverted because reverse sort (higher values
 			// appear to the left)
@@ -175,41 +245,26 @@ export function Planner( { board, traits, removeChamp } ){
 			if (valueB > valueA) {
 				return 1;
 			}
+			if (traitAAmount > traitBAmount) {
+				return -1;
+			}
+			if (traitBAmount < traitAAmount) {
+				return 1;
+			}
 			return 0;
 		}
 	}
-
-	function calculateNextThreshold(trait){
-		if (trait !== undefined) {
-			var level = 'EMPTY';
-			const keys = Object.keys(traitThresholds[trait[0]]);
-			const values = Object.values(traitThresholds[trait[0]]);
-			if (Object.keys(traitThresholds[trait[0]]).length == 1) {
-				level = Object.keys(traitThresholds[trait[0]])[0];
-			} else {
-				for (var i = 0; i < Object.keys(traitThresholds[trait[0]]).length; i++) {
-					if (trait[1] < values[i]) {
-						if (i >= 1) {
-							level = keys[i-1];
-						}
-						break;
-					}
-				}
-			}
-			return [level, trait[1]];
-		}
-    }
 
 	return(
 		<div className="teamplanner-plannerSection">
 			<div className="teamplanner-plannerSection-board">
 				{board.map((champ, index) =>
-					<BoardChamp key={champ + index} champ={champ} index={index} removeChamp={removeChamp}/>
+					<BoardChamp key={champ + index} champ={champ} champIndex={index} removeChamp={removeChamp} updateChamp={updateChamp}/>
 				)}
 			</div>
 			<div className="teamplanner-plannerSection-traits">
-				{Object.entries(traits).sort(compareTraitValueForUI).map((trait) =>
-					<Trait key={trait} trait={trait} traitThresholds={traitThresholds[trait[0]]}></Trait>
+				{globalLevels.map((trait) =>
+					<Trait key={trait['name']} traitName={trait['name']} traitAmount={trait['amount']} currentLevel={trait['currentLevel']} nextThreshold={trait['nextThreshold']}></Trait>
 				)}
 				<div className='teamplanner-plannerSection-traits-scrollPadding'></div>
 			</div>

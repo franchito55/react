@@ -1,0 +1,12 @@
+.boardChampItemSlot {
+    height: 100%;
+    aspect-ratio: 1/1;
+    background-color: #01144a;
+    border: 1px solid #012178;
+    cursor: pointer;
+}
+
+.itemSlotImage {
+    width: 100%;
+    height: 100%;
+}

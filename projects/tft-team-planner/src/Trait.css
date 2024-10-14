@@ -29,23 +29,28 @@
 }
 
 .traitHex.bronze {
-    background-color: #8b6148;
+    background: linear-gradient(to bottom, #7d5b44 40%, #734c35 60%);
 }
 
 .traitHex.silver {
-    background-color: #8a9697;
+    background: linear-gradient(to bottom, #889798 40%, #657374 60%);
 }
 
 .traitHex.gold {
-    background-color: gold;
+    background: linear-gradient(to bottom, #af9d5a 40%, #9d8039 60%);
 }
 
 .traitHex.prismatic {
-    background-color: aqua;
+    background-image: linear-gradient(135deg, #cecafb 0, #cecafb 33%, #dbfdf9 100%);
 }
 
 .traitHex.unique {
-    background-color: orange;
+    background: radial-gradient(circle farthest-corner at 50% 0, #ef9c54 0, #d95c30 50%, #d95c30 100%), linear-gradient(180deg, #d95c30 0, #e58736 100%);
+	background-repeat: no-repeat;
+	background-position: 50% 0, 50% 100%;
+	background-origin: padding-box;
+	background-clip: border-box;
+	background-size: auto 50%;
 }
 
 .emblemIcon {

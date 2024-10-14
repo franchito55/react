@@ -38,3 +38,7 @@
 .cost-5 .championIcon {
 	border: 1px solid #f7fa50;
 }
+
+.cost-0 .championIcon {
+	border: 1px solid white;
+}

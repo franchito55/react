@@ -11,8 +11,23 @@
 	flex-wrap: wrap;
 	align-content: flex-start;
 	padding: 20px;
-	gap: 8px;
+	column-gap: 8px;
+	row-gap: 16px;
 	height: 75%;
+	overflow-y: auto;
+}
+
+.teamplanner-plannerSection-board::-webkit-scrollbar {
+	width: 8px;
+}
+
+.teamplanner-plannerSection-board::-webkit-scrollbar-thumb {
+	background-color: white;
+	border-radius: 4px;
+}
+
+.teamplanner-plannerSection-board::-webkit-scrollbar-track {
+	background-color: transparent;
 }
 
 .teamplanner-plannerSection-traits {

@@ -1,25 +1,52 @@
 .teamplanner-board-championSlot {
-	height: 63px;
-	width: 63px;
-	background-color: darkblue;
+	height: 78px;
+	width: 78px;
+	cursor: pointer;
 }
 
-.teamplanner-board-championSlot.cost-1 {
+.teamplanner-board-championSlot .cost-1 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
 	border: 1px solid #5a6069;
 }
 
-.teamplanner-board-championSlot.cost-2 {
+.teamplanner-board-championSlot .cost-2 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
 	border: 1px solid #16823f;
 }
 
-.teamplanner-board-championSlot.cost-3 {
+.teamplanner-board-championSlot .cost-3 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
 	border: 1px solid #0e82c9;
 }
 
-.teamplanner-board-championSlot.cost-4 {
+.teamplanner-board-championSlot .cost-4 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
 	border: 1px solid #9607a3;
 }
 
-.teamplanner-board-championSlot.cost-5 {
+.teamplanner-board-championSlot .cost-5 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
 	border: 1px solid #f7fa50;
+}
+
+.teamplanner-board-championSlot .cost-0 {
+	height: calc(100% - 2px);
+	width: calc(100% - 2px);
+	border: 1px solid white;
+}
+
+.boardChampItemSlot-container {
+	height: 25%;
+	width: 90%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	position: relative;
+	top: -20%;
+	left: 5%;
 }
