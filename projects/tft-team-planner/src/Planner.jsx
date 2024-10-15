@@ -245,10 +245,12 @@ export function Planner( { board, removeChamp, updateChamp } ){
 			if (valueB > valueA) {
 				return 1;
 			}
-			if (traitAAmount > traitBAmount) {
+			const traitANextThreshold = traitA['nextThreshold'];
+			const traitBNextThreshold = traitB['nextThreshold'];
+			if (traitAAmount/traitANextThreshold > traitBAmount/traitBNextThreshold) {
 				return -1;
 			}
-			if (traitBAmount < traitAAmount) {
+			if (traitBAmount/traitBNextThreshold < traitAAmount/traitANextThreshold) {
 				return 1;
 			}
 			return 0;
