@@ -1,0 +1,12 @@
+body {
+  background-color: rgb(37, 37, 37);
+  color: white;
+}
+
+.movie-div {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(82, 44, 17);
+  width: 20vw;
+  height: 20vh; 
+}
