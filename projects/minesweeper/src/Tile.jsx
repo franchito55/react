@@ -1,41 +1,38 @@
+import { useEffect, useState } from 'react';
 import './App.css'
 
 export function Tile( { column, row, state, divSize, updateBoard } ) {
+    const [explored, setExplored] = useState(false)
     let bkgColor = ''
     var icon = '';
 
     function handleClick(e) {
-        if (state === 2) {
-            updateBoard(row, column, 1)
-        } else if (state === 1) {
-            updateBoard(row, column, 2)
-        }
+        setExplored(true)
+        console.log(`Explored tile ${row}, ${column}`)
+        updateBoard(row, column)
     }
-    
-    switch(state) {
-        case 0:
-            // Inactive/not explored yet
-            break;
-        case 1:
-            // Flag
-            icon = 'F'
-            bkgColor = 'lightblue'
-            break;
-        case 2:
-            // Bomb
-            icon = 'B'
-            bkgColor = 'blue'
-            break;
-        case 3:
-            icon = 'F'
-            bkgColor = 'red'
-            break;
-        case 4:
-            icon = 'T'
-            bkgColor = 'purple'
-        default:
-            icon = '?'
-            break;
+
+    if (explored) {
+        switch(state) {
+            case 9:
+                // Flag
+                icon = 'F'
+                bkgColor = 'lightblue'
+                break;
+            case 10:
+                // Bomb
+                icon = 'B'
+                bkgColor = 'blue'
+                break;
+            default:
+                // Explored (number of bombs around it)
+                // We'll just use other numbers for it
+                icon = state
+                bkgColor = 'darkgray'
+                break;
+        }
+    } else {
+        bkgColor = 'black'
     }
 
     return (
